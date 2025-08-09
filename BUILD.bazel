@@ -1,0 +1,19 @@
+load("@rules_python//python:pip.bzl", "compile_pip_requirements")
+load("@pip//:requirements.bzl", "requirement")
+
+compile_pip_requirements(
+    name = "requirements",
+    src = "requirements.in",
+    requirements_txt = "requirements_lock.txt"
+)
+
+py_binary(
+    name = "gen_python_path",
+    srcs = ["gen_python_path.py"],
+    deps = [
+        "//src/python/models:models",
+        "//src/python/data:data",
+        requirement("torch"),
+        requirement("torchvision"),
+    ],
+)

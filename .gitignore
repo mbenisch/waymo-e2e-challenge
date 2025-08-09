@@ -1,0 +1,8 @@
+# Bazel output
+bazel-*
+
+# Python env file for IDE
+.env
+
+# Local vscode config files
+.vscode
