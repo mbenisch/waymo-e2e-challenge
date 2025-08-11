@@ -5,6 +5,7 @@ requirements used by the workspace.
 """
 
 bazel_dep(name = "rules_python", version = "0.40.0")
+bazel_dep(name = "protobuf", version = "29.5")
 
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")
 python.toolchain(
