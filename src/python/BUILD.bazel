@@ -1,0 +1,13 @@
+load("@rules_python//python:defs.bzl", "py_binary")
+load("@pip//:requirements.bzl", "requirement")
+py_binary(
+    name = "main",
+    srcs = [
+      "main.py",
+    ],
+    deps = [
+        requirement("torch"),
+        requirement("tensorflow"),
+        "//src/python/waymo_open_dataset/protos:protos_lib",
+    ]
+)
