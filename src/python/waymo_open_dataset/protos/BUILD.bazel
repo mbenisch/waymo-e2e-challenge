@@ -1,0 +1,67 @@
+load("@rules_python//python:defs.bzl", "py_library")
+load("@protobuf//bazel:proto_library.bzl", "proto_library")
+load("@protobuf//bazel:py_proto_library.bzl", "py_proto_library")
+proto_library(
+  name = "vector_proto",
+  srcs = ["vector.proto"],
+)
+proto_library(
+  name = "map_proto",
+  srcs = ["map.proto"],
+)
+proto_library(
+  name = "keypoint_proto",
+  srcs = ["keypoint.proto"],
+  deps = [":vector_proto"]
+)
+proto_library(
+  name = "label_proto",
+  srcs = ["label.proto"],
+  deps = [":keypoint_proto"]
+)
+proto_library(
+  name = "dataset_proto",
+  srcs = ["dataset.proto"],
+  deps = [":label_proto",
+          ":map_proto",
+          ":vector_proto"]
+)
+proto_library(
+  name = "end_to_end_driving_data_proto",
+  srcs = ["end_to_end_driving_data.proto"],
+  deps = [":dataset_proto"]
+)
+py_proto_library(
+    name = "vector_proto_py_pb2",
+    deps = [":vector_proto"],
+)
+py_proto_library(
+    name = "map_proto_py_pb2",
+    deps = [":map_proto"],
+)
+py_proto_library(
+    name = "keypoint_proto_py_pb2",
+    deps = [":keypoint_proto"],
+)
+py_proto_library(
+    name = "label_proto_py_pb2",
+    deps = [":label_proto"],
+)
+py_proto_library(
+    name = "dataset_proto_py_pb2",
+    deps = [":dataset_proto"],
+)
+py_proto_library(
+    name = "end_to_end_driving_data_proto_py_pb2",
+    deps = [":end_to_end_driving_data_proto"],
+)
+py_library(
+    name = "protos_lib",
+    deps = [":vector_proto_py_pb2",
+            ":map_proto_py_pb2",
+            ":keypoint_proto_py_pb2",
+            ":label_proto_py_pb2",
+            ":dataset_proto_py_pb2",
+            "end_to_end_driving_data_proto_py_pb2"],
+    visibility = ["//visibility:public"],
+)
