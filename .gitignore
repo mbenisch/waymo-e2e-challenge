@@ -6,3 +6,4 @@ bazel-*
 
 # Local vscode config files
 .vscode
+pyrightconfig.json

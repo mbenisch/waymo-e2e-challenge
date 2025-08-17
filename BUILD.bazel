@@ -9,11 +9,12 @@ compile_pip_requirements(
 )
 
 py_binary(
-    name = "gen_python_path",
-    srcs = ["gen_python_path.py"],
+    name = "vscode_import_generator",
+    srcs = ["vscode_import_generator.py"],
     deps = [
         "//src/python/models:models",
         "//src/python/data:data",
+        "//src/python/waymo_open_dataset/protos:protos_lib",
         requirement("torch"),
         requirement("torchvision"),
         requirement("tensorflow"),
